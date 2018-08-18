@@ -1,11 +1,14 @@
 const express = require("express");
-const http = require("http");
-const ejs = require("ejs");
 const bodyParser = require("body-parser");
 const app = express();
-const server = http.createServer(app);
+const routes = require("./routes");
+const PORT = process.env.PORT || 4321;
+// bodyparser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-server.listen(3000, () => {
-  console.log("Listening on 3000");
+app.use("/", routes);
+
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
 });
-// Body parser setup
