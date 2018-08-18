@@ -13,6 +13,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // posts related routes
 app.use("/posts", posts);
 
+app.use(function(req, res) {
+  res.status(404).send({
+    message: "Not Found"
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
 });
