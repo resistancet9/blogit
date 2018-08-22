@@ -6,10 +6,19 @@ const config = require("./../../config/config");
 const UserModel = require("./../../models/User");
 const passport = require("passport");
 
+// validation
+const validate = require("./../../validation/register");
+
 // /users root
 
 // register user
 UsersRouter.post("/register", function(req, res) {
+  const { errors, isValid } = validate(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   if (!req.body.email || !req.body.name || !req.body.password)
     return res.status(400).send({
       message: "Name, Email or Password Missing"
@@ -64,6 +73,7 @@ UsersRouter.post("/login", function(req, res) {
       // payload for jwt
       const payload = {
         id: user.id,
+        email: user.email,
         name: user.name
       };
 
@@ -84,7 +94,11 @@ UsersRouter.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   function(req, res) {
-    res.json(req.user);
+    res.json({
+      id: req.user.id,
+      email: req.user.email,
+      name: req.user.name
+    });
   }
 );
 
