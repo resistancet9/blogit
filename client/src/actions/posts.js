@@ -1,3 +1,5 @@
+import axios from "axios";
+
 function fetchAllPosts() {
   return function(dispatch) {
     fetch("/posts")
@@ -6,4 +8,17 @@ function fetchAllPosts() {
   };
 }
 
-export { fetchAllPosts };
+function createNewPost(formData, history) {
+  return function(dispatch) {
+    axios
+      .post("/posts", formData)
+      .then(function(response) {
+        history.push("/");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+}
+
+export { fetchAllPosts, createNewPost };

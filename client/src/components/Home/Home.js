@@ -8,11 +8,21 @@ class Home extends Component {
   }
 
   render() {
-    return <div className="mt-3">Home</div>;
+    const Posts = this.props.posts.map(post => {
+      return <div key={post._id}> {post.title} </div>;
+    });
+
+    return <div className="mt-3">{Posts}</div>;
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    posts: state.posts.posts
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { fetchAllPosts }
 )(Home);

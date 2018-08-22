@@ -7,11 +7,6 @@ import { Route, Switch } from "react-router-dom";
 const NotFound = () => <div> NotFound </div>;
 
 class App extends Component {
-  componentDidMount() {
-    fetch("/posts")
-      .then(d => d.json())
-      .then(d => console.log(d));
-  }
   render() {
     return (
       <div>
