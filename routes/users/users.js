@@ -7,13 +7,14 @@ const UserModel = require("./../../models/User");
 const passport = require("passport");
 
 // validation
-const validate = require("./../../validation/register");
+const validateRegister = require("./../../validation/register");
+const validateLogin = require("./../../validation/login");
 
 // /users root
 
 // register user
 UsersRouter.post("/register", function(req, res) {
-  const { errors, isValid } = validate(req.body);
+  const { errors, isValid } = validateRegister(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);
@@ -51,6 +52,12 @@ UsersRouter.post("/register", function(req, res) {
 
 // user login
 UsersRouter.post("/login", function(req, res) {
+  const { errors, isValid } = validateLogin(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   if (!req.body.email || !req.body.password)
     return res.status(400).send({
       message: "Email or Password Missing"
