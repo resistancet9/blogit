@@ -56,4 +56,9 @@ PostsRouter.post("/", function(req, res) {
     });
 });
 
+PostsRouter.post("/delete", function(req, res) {
+  let id = req.body.id;
+  // delete a post
+});
+
 module.exports = PostsRouter;

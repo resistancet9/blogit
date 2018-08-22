@@ -20,6 +20,7 @@ mongoose
 
 // routes
 const posts = require("./routes/posts/posts");
+const users = require("./routes/users/users");
 
 // bodyparser
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // posts related routes
 app.use("/posts", posts);
+app.use("/users", users);
 
 // any unmatched routes
 app.use(function(req, res) {
