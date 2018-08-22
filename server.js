@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 4321;
 const mongoose = require("mongoose");
+const passport = require("passport");
 
 // get config file
 const config = require("./config/config");
@@ -17,6 +18,12 @@ mongoose
     console.log("Connected to Mongo!");
   })
   .catch(err => console.log(err));
+
+// passport setup
+app.use(passport.initialize());
+
+// passport config
+require("./config/passport")(passport);
 
 // routes
 const posts = require("./routes/posts/posts");

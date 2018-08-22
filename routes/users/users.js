@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("./../../config/config");
 const UserModel = require("./../../models/User");
+const passport = require("passport");
 
 // /users root
 
@@ -78,5 +79,13 @@ UsersRouter.post("/login", function(req, res) {
     });
   });
 });
+
+UsersRouter.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  function(req, res) {
+    res.json(req.user);
+  }
+);
 
 module.exports = UsersRouter;
