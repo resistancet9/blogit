@@ -1,6 +1,8 @@
 const express = require("express");
 const UsersRouter = express.Router();
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("./../../config/config");
 const UserModel = require("./../../models/User");
 
 // /users root
@@ -52,13 +54,26 @@ UsersRouter.post("/login", function(req, res) {
     }
 
     bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
-      if (!isMatch || err)
+      if (!isMatch || err) {
         return res.status(404).send({
           message: "Bad Email or Password"
         });
+      }
 
-      return res.json({
-        message: "You are damn near free!"
+      // payload for jwt
+      const payload = {
+        id: user.id,
+        name: user.name
+      };
+
+      // generate jwt token
+      jwt.sign(payload, config.key, { expiresIn: 3600 }, (err, token) => {
+        if (err) throw err;
+
+        return res.json({
+          success: true,
+          token: "Bearer " + token
+        });
       });
     });
   });
