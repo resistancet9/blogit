@@ -1,0 +1,13 @@
+.navbar {
+  background: #f8f9f9;
+  height: 50px;
+  box-shadow: 0 0 5px #0003;
+}
+
+.navbar a {
+  color: #333;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
