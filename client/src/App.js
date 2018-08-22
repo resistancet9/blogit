@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Create from "./components/Posts/Create";
+import Home from "./components/Home/Home";
 import { Route, Switch } from "react-router-dom";
 
-const Home = () => <div> Home </div>;
 const NotFound = () => <div> NotFound </div>;
 
 class App extends Component {
+  componentDidMount() {
+    fetch("/posts")
+      .then(d => d.json())
+      .then(d => console.log(d));
+  }
   render() {
     return (
       <div>
