@@ -8,7 +8,7 @@ class NavbarComponent extends Component {
       <header>
         <nav className="navbar navbar-expand-md fixed-top">
           <div className="container">
-            <NavLink className="navbar-brand" to="#">
+            <NavLink className="navbar-brand" to="/">
               BlogIt
             </NavLink>
             <button
@@ -22,18 +22,33 @@ class NavbarComponent extends Component {
             <div className="collapse navbar-collapse" id="collapse">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <NavLink className="nav-link " to="#">
+                  <NavLink className="nav-link " to="/">
                     Home
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="#">
-                    Link
+                  <NavLink className="nav-link " to="/create">
+                    Create
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="#">
-                    Disabled
+                  <NavLink className="nav-link " to="/register">
+                    Register
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link " to="/login">
+                    Login
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/about">
+                    About
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/contact">
+                    Contact
                   </NavLink>
                 </li>
               </ul>

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Navbar from "./components/Navbar/Navbar";
-import { Route } from "react-router-dom";
+import Create from "./components/Posts/Create";
+import { Route, Switch } from "react-router-dom";
 
 const Home = () => <div> Home </div>;
+const NotFound = () => <div> NotFound </div>;
 
 class App extends Component {
   render() {
@@ -11,7 +13,11 @@ class App extends Component {
         <Navbar />
         <div className="adjustment mt-5 pt-2" />
         <div className="container">
-          <Route path="/" exact component={Home} />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/create" exact component={Create} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </div>
     );
