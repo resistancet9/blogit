@@ -8,15 +8,15 @@ function fetchAllPosts() {
   };
 }
 
-function createNewPost(formData, history) {
+function createNewPost(formData, history, changeState) {
   return function(dispatch) {
     axios
       .post("/posts", formData)
       .then(function(response) {
-        history.push("/");
+        changeState();
       })
       .catch(function(error) {
-        console.log(error);
+        changeState(error.response.data);
       });
   };
 }
