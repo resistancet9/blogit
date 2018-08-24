@@ -41,3 +41,15 @@ export function loginUser(userData, history) {
       });
   };
 }
+
+export function logoutUser() {
+  return dispatch => {
+    localStorage.removeItem("jToken");
+    setAuthHeader(false);
+
+    dispatch({
+      type: "SET_CURRENT_USER",
+      payload: null
+    });
+  };
+}
