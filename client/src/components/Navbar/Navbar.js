@@ -19,7 +19,7 @@ class NavbarComponent extends Component {
         <nav className="navbar navbar-expand-md fixed-top">
           <div className="container">
             <NavLink className="navbar-brand" to="/">
-              BlogIt
+              Blogger
             </NavLink>
             <button
               className="navbar-toggler"
