@@ -27,13 +27,14 @@ const MainPostMaker = post => {
 };
 
 class Home extends Component {
+
   componentDidMount() {
     this.props.fetchAllPosts();
   }
 
   render() {
-    const { posts } = this.props;
-    const MainPost = posts.length ? MainPostMaker(posts.shift()) : "";
+    const { featured, posts } = this.props;
+    const MainPost = MainPostMaker(featured);
     const Posts = posts.map((post, i) => PostMaker(post, i));
     return (
       <div className="mt-1">
@@ -51,7 +52,8 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    posts: state.posts.posts
+    posts: state.posts.posts,
+    featured: state.posts.featured
   };
 }
 

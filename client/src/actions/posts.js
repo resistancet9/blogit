@@ -4,7 +4,12 @@ function fetchAllPosts() {
   return function(dispatch) {
     fetch("/posts")
       .then(d => d.json())
-      .then(data => dispatch({ type: "FETCH_ALL", payload: data }));
+      .then(data => {
+        let data_clone = data.slice();
+        data.featured = data_clone.shift();
+        data.posts = data_clone;
+        dispatch({ type: "FETCH_ALL", payload: data })
+      });
   };
 }
 
